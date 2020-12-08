@@ -1,7 +1,8 @@
-public class Plant {
-    private int statusTumbuh;// 0-4 private 
-    int jumlahAir;
+abstract class Plant {
+    private int statusTumbuh;
+    private int jumlahAir;
     private int jumlahPupuk;
+    protected String jenis;
 
     public Plant() {
         statusTumbuh = 0;
@@ -9,23 +10,23 @@ public class Plant {
         jumlahPupuk = 0;
     }
 
-    public int getJumlahAir() {
+    public int getJumlahAir(){
         return jumlahAir;
     }
 
-    public void setJumlahAir(int n) {
+    public void setJumlahAir(int n){
         jumlahAir = n;
     }
 
-    public int getJumlahPupuk() {
+    public int getJumlahPupuk(){
         return jumlahPupuk;
     }
 
-    public void setJumlahPupuk(int n) {
+    public void setJumlahPupuk(int n){
         jumlahPupuk = n;
     }
-
-    public void setStatusTumbuh(int n) {
+        
+    public void setStatusTumbuh(int n){
         statusTumbuh = n;
     }
 
@@ -40,11 +41,9 @@ public class Plant {
     }
 
     public void cekKondisiTumbuh() {
-        // cek kecukupan air dan pupuk
         if (jumlahAir >= 3 && jumlahPupuk >= 1) {
             tumbuh();
         }
-
     }
 
     public void tumbuh() {
@@ -53,13 +52,14 @@ public class Plant {
             jumlahPupuk = jumlahPupuk - 1;
             statusTumbuh++;
         }
-
     }
 
     public void displayPlant() {
-        System.out.println(getStatusTumbuhText());
-        System.out.println("Jumlah Air:" + jumlahAir);
-        System.out.println("Jumlah Pupuk:" + jumlahPupuk);
+        //System.out.println(getStatusTumbuhText());
+        System.out.format("|Jumlah Air | Jumlah Pupuk | Status Tumbuh |\n");
+       // System.out.println();
+        System.out.format("|%-11d|%-14d|%-15s|", +jumlahAir, +jumlahPupuk, getStatusTumbuhText());
+        System.out.println();
     }
 
     public String getStatusTumbuhText() {
@@ -79,7 +79,7 @@ public class Plant {
     public int getStatusTumbuh() {
         return statusTumbuh;
     }
-
+    
     public String getImagePath() {
         String tImagePath = "img/seed.png";
         switch (statusTumbuh) {
